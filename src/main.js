@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { handleBG } from './handleBG';
-import { slotsBG } from './slotsContainer';
+import { handleLogo } from './handleLogo';
+import { slotContainer } from './slotsContainer';
 
 let app;
 
@@ -15,9 +16,11 @@ window.onload = async () => {
 
   handleBG(app)
   .then(() => {
-    slotsBG(app);
-  })
+    handleLogo(app);
+    slotContainer(app);
+  });
 }
+
 
 
 
