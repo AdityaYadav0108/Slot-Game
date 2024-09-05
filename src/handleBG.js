@@ -37,7 +37,7 @@ export async function handleBG(app){
       bgContainer.removeChild(pb);
       bgContainer.addChild(lb);
     }
-  })
+  });
 
   window.dispatchEvent(new Event('resize'));
 }

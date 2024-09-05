@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js'
+import * as PIXI from 'pixi.js';
 
 export async function slotContainer(app) {
   const slotContainer = new PIXI.Container();
@@ -25,3 +25,5 @@ export async function slotContainer(app) {
 
   window.dispatchEvent(new Event('resize'));
 };
+
+
