@@ -23,7 +23,6 @@ export async function handleBG(app){
   window.addEventListener('resize', () => {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
     const isPortrait = screenWidth < screenHeight;
 
     if(isPortrait){
