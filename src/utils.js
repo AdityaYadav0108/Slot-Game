@@ -29,6 +29,10 @@ export const reels = [];
 
 export let app;
 
-export function setApp(app){
-  app = app;
+export function setApp(newApp){
+  app = newApp;
+}
+
+export function getApp(){
+  return app;
 }

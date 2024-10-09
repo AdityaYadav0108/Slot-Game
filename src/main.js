@@ -5,6 +5,7 @@ import { setApp } from "./utils";
 import { handleBG } from "./Handlers/handleBG";
 import { handleLogo } from "./Handlers/handleLogo";
 import { addButton } from "./Handlers/handleButton";
+import { setupTweening } from "./Handlers/tweening";
 
 let app;
 
@@ -23,5 +24,6 @@ window.onload = async () => {
     handleLogo(app);
     slotContainerHandler(app);
     addButton(app);
+    setupTweening(); // Add this line to set up tweening after app is initialized
   });
 };
