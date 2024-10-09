@@ -1,7 +1,10 @@
 import * as PIXI from 'pixi.js';
+
+import { slotContainerHandler } from './slotsContainer';
+import { setApp } from './utils';
 import { handleBG } from './Handlers/handleBG';
 import { handleLogo } from './Handlers/handleLogo';
-import { slotContainerHandler } from './slotsContainer';
+import { addSymbols } from './Handlers/addSymbols';
 
 let app;
 
@@ -11,6 +14,8 @@ window.onload = async () => {
     backgroundColor: '#1099bb'
   });
 
+  setApp(app);
+
   globalThis.__PIXI_APP__ = app;
   document.body.appendChild(app.view);
 
@@ -19,7 +24,7 @@ window.onload = async () => {
     handleLogo(app);
   }).then(() => {
     slotContainerHandler(app);
-  });
+  })
 }
 
 

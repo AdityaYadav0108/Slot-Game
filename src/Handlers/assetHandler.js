@@ -1,3 +1,4 @@
+
 async function onAssetLoaded(app, slotContainer, slotBG){
   const slotTextures = await Promise.all([
     PIXI.Assets.load("../../assets/symbols/01.png"),
@@ -56,4 +57,5 @@ async function onAssetLoaded(app, slotContainer, slotBG){
 
   console.log(reelContainer.position)
   slotContainer.addChild(reelContainer);
+  addSymbols(slotBG, slotContainer);
 }
