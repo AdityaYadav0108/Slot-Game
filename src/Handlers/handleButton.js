@@ -1,13 +1,20 @@
 import * as PIXI from "pixi.js";
-import { reels, slotDimensions } from "../utils";
+import { reels, slotDimensions, symbolNames, symbols } from "../utils";
 import { tweenTo } from "./tweening";
-export function addButton(app) {
+
+export async function addButton(app) {
+  // Load symbol textures
+  await PIXI.Assets.load(Object.values(symbols));
+  const symbolTextures = Object.fromEntries(
+    Object.entries(symbols).map(([key, value]) => [key, PIXI.Texture.from(value)])
+  );
+
   const style = new PIXI.TextStyle({
     fontFamily: "Arial",
     fontSize: 36,
     fontStyle: "italic",
     fontWeight: "bold",
-    fill: ["#ffffff", "#00ff99"], // gradient
+    fill: ["#ffffff", "#00ff99"],
     stroke: "#4a1850",
     strokeThickness: 5,
     dropShadow: true,
@@ -18,16 +25,15 @@ export function addButton(app) {
     wordWrap: true,
     wordWrapWidth: 440,
   });
+  
   const playText = new PIXI.Text("Spin the wheels!", style);
   playText.anchor.set(0.5);
   playText.position.set(app.screen.width / 2, app.screen.height * 0.85);
   app.stage.addChild(playText);
 
-  playText.eventMode = "static";
-  playText.cursor = "pointer";
-  playText.addListener("pointerdown", () => {
-    startPlay();
-  });
+  playText.eventMode = 'static';
+  playText.cursor = 'pointer';
+  playText.on('pointerdown', startPlay);
 
   let running = false;
 
@@ -72,14 +78,10 @@ export function addButton(app) {
       for (let j = 0; j < r.symbols.length; j++) {
         const s = r.symbols[j];
         const prevy = s.y;
-        s.y =
-          ((r.position + j) % r.symbols.length) * slotDimensions.symbolSize -
-          slotDimensions.symbolSize + 80;
+        s.y = ((r.position + j) % r.symbols.length) * slotDimensions.symbolSize;
         if (s.y < 0 && prevy > slotDimensions.symbolSize) {
-          s.texture =
-            app.loader.resources[
-              symbolNames[Math.floor(Math.random() * symbolNames.length)]
-            ].texture;
+          const randomSymbolName = symbolNames[Math.floor(Math.random() * symbolNames.length)];
+          s.texture = symbolTextures[randomSymbolName];
           s.scale.x = s.scale.y = Math.min(
             slotDimensions.symbolSize / s.texture.width,
             slotDimensions.symbolSize / s.texture.height

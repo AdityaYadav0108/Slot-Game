@@ -20,10 +20,9 @@ window.onload = async () => {
   globalThis.__PIXI_APP__ = app;
   document.body.appendChild(app.view);
 
-  handleBG(app).then(() => {
-    handleLogo(app);
-    slotContainerHandler(app);
-    addButton(app);
-    setupTweening(); // Add this line to set up tweening after app is initialized
-  });
+  await handleBG(app);
+  await handleLogo(app);
+  await slotContainerHandler(app);
+  await addButton(app);
+  setupTweening();
 };
