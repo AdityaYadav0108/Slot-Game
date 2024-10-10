@@ -28,7 +28,7 @@ export async function addButton(app) {
   
   const playText = new PIXI.Text("Spin the wheels!", style);
   playText.anchor.set(0.5);
-  playText.position.set(app.screen.width / 2, app.screen.height * 0.85);
+  playText.position.set(app.screen.width / 2, app.screen.height * 0.9);
   app.stage.addChild(playText);
 
   playText.eventMode = 'static';
@@ -78,7 +78,7 @@ export async function addButton(app) {
       for (let j = 0; j < r.symbols.length; j++) {
         const s = r.symbols[j];
         const prevy = s.y;
-        s.y = ((r.position + j) % r.symbols.length) * slotDimensions.symbolSize;
+        s.y = ((r.position + j) % r.symbols.length) * slotDimensions.symbolSize - slotDimensions.symbolSize * .5;
         if (s.y < 0 && prevy > slotDimensions.symbolSize) {
           const randomSymbolName = symbolNames[Math.floor(Math.random() * symbolNames.length)];
           s.texture = symbolTextures[randomSymbolName];

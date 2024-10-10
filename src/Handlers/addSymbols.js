@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { reels, slotDimensions, symbolNames, symbols } from "../utils";
+import { addMask } from "./addMask";
 
 export async function addSymbols(slotBG, slotContainer, app) {
   PIXI.Assets.addBundle("symbols", symbols);
@@ -27,7 +28,7 @@ export async function addSymbols(slotBG, slotContainer, app) {
     };
     reel.blur.blurX = reel.blur.blurY = 0;
     rc.filters = [reel.blur];
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 6; j++) {
       const symbol = new PIXI.Sprite(
         symbolAssets[symbolNames[Math.floor(Math.random() * symbolNames.length)]]
       );
@@ -45,6 +46,7 @@ export async function addSymbols(slotBG, slotContainer, app) {
   reelContainer.pivot.set(reelContainer.width/2, reelContainer.height/2)
   reelContainer.position.set(slotBG.x, slotBG.y)
   slotContainer.addChild(reelContainer);
-
   console.log(reels);
+
+  addMask(slotBG, reelContainer, slotContainer);
 }

@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { addSymbols } from "./Handlers/addSymbols.js";
+import { addMask } from "./Handlers/addMask.js";
 
 export let slotContainer;
 
